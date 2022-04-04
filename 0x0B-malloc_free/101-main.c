@@ -1,6 +1,6 @@
 #include "holberton.h"
 #include <stdio.h>
-#include <stdlib.h>
+#include <stdio.h>
 
 /**
  * print_tab - Prints an array of string
