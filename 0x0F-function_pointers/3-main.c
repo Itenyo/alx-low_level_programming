@@ -1,16 +1,39 @@
-julien@ubuntu:~/0x0e. Function pointers$ gcc -Wall -pedantic -Werror -Wextra -std=gnu89 3-main.c 3-op_functions.c 3-get_op_func.c -o calc
-julien@ubuntu:~/0x0e. Function pointers$ ./calc 1 + 1
-2
-julien@ubuntu:~/0x0e. Function pointers$ ./calc 97 + 1
-98
-julien@ubuntu:~/0x0e. Function pointers$ ./calc 1024 / 10
-102
-julien@ubuntu:~/0x0e. Function pointers$ ./calc 1024 '*' 98
-100352
-julien@ubuntu:~/0x0e. Function pointers$ ./calc 1024 '\*' 98
-Error
-julien@ubuntu:~/0x0e. Function pointers$ ./calc 1024 - 98
-926
-julien@ubuntu:~/0x0e. Function pointers$ ./calc 1024 '%' 98
-44
-julien@ubuntu:~/0x0e. Function pointers$ 
+#include "3-calc.h"
+#include <stdlib.h>
+#include <stdio.h>
+/**
+* main - Prints the result of simple operations.
+* @argc: The number of arguments supplied to the program.
+* @argv: An array of pointers to the arguments.
+*
+* Return: Always 0.
+*/
+int main(int argc, char *argv[])
+{
+	int num1, num2;
+	char *op;
+
+	if (argc != 4)
+	{
+		printf("Error\n");
+		exit(98);
+	}
+
+	num1 = atoi(argv[1]);
+	op = argv[2];
+	num2 = atoi(argv[3]);
+
+	if (get_op_func(op) == NULL || op[1] != '\0')
+	{
+		printf("Error\n");
+		exit(99);
+	}
+	if ((*op == '/' && num2 == 0) ||
+	    (*op == '%' && num2 == 0))
+	{
+		printf("Error\n");
+		exit(100);
+	}
+	printf("%d\n", get_op_func(op)(num1, num2));
+	return (0);
+} 
