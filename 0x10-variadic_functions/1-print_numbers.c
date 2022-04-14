@@ -4,26 +4,21 @@
 #include <stdio.h>
 
 /**
-* print_strings - prints all strings with a separator
-* @separator: separe strings
+* print_numbers - prints all numbers with a separator
+* @separator: separe numbers
 * @n: int, number of undefined arguments
 */
 
-void print_strings(const char *separator, const unsigned int n, ...)
+void print_numbers(const char *separator, const unsigned int n, ...)
 {
 va_list list;
 unsigned int i;
-char *c;
+
 va_start(list, n);
 
 for (i = 0; i < n; i++)
 {
-c = va_arg(list, char*);
-if (c != NULL)
-printf("%s", c);
-else
-printf("(nil)");
-
+printf("%i", va_arg(list, int));
 if (i != n - 1 && separator != NULL)
 printf("%s", separator);
 }
